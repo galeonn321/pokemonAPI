@@ -14,8 +14,8 @@ import { fetchPokemon } from "../api/fetchPokemon";
 import PokemonDetailModal from "./PokemonDetailModal";
 import { fetchMultiplePokemons } from "../api/fetchMultiplePokemons";
 import { usePokemon } from "../api/usePokemon";
-import { LOG } from "../config/logger";
 const { height, width } = Dimensions.get("screen");
+
 
 const SearchPokemonInput: React.FC = () => {
   const [inputText, setInputText] = useState<string>("");
@@ -28,11 +28,6 @@ const SearchPokemonInput: React.FC = () => {
     getMultiplePokemons();
   }, [inputText === ""]);
 
-  useEffect(() => {
-    LOG.error(modalVisible)
-  }, [modalVisible])
-  
-
   const getMultiplePokemons = async () => {
     setIsLoading(true);
     const data = await fetchMultiplePokemons();
@@ -44,20 +39,18 @@ const SearchPokemonInput: React.FC = () => {
     setIsLoading(true);
     const pokemonResult = await fetchPokemon(inputText);
     setSearchResults([pokemonResult]);
-    // LOG.info(typeof searchResults);
     setIsLoading(false);
   };
 
   const getDataFromPokemon = async (id: string) => {
     const dataSinglePokemon = await usePokemon(id);
     setSelectedPokemon([dataSinglePokemon]);
-    setModalVisible(true)
+    setModalVisible(true);
   };
-  
 
   const renderItem = (item: any) => {
     const pokemonName =
-      item?.item.name ?? "could not find any name for this monster";
+      item?.item.name ?? "could not find any name of this monster";
     return (
       <Pressable
         style={styles.cardContainer}
@@ -82,7 +75,7 @@ const SearchPokemonInput: React.FC = () => {
           onChangeText={(text: string) => setInputText(text)}
           value={inputText}
           placeholder="Write a pokemon"
-        />
+        ></TextInput>
         <Pressable
           style={styles.button}
           onPress={() => handleButtonPress(inputText)}
@@ -95,7 +88,7 @@ const SearchPokemonInput: React.FC = () => {
       ) : (
         <PokemonDetailModal
           modalVisible={modalVisible}
-          closeModal={()=>setModalVisible(!modalVisible)}
+          closeModal={() => setModalVisible(!modalVisible)}
           data={selectedPokemon}
         />
       )}
@@ -120,6 +113,9 @@ const SearchPokemonInput: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+  },
+  icon: {
+    marginRight: 10,
   },
   input: {
     height: 40,
