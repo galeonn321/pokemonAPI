@@ -11,6 +11,11 @@ export const fetchMultiplePokemons = async (): Promise<Pokemon[]> => {
 
     const data = await response.json();
 
+    // Check if the results array is empty
+    if (!data.results || data.results.length === 0) {
+      throw new Error("No Pokémon found");
+    }
+
     const pokemonData: Pokemon[] = data.results.map(
       (item: { url: string; name: string }) => {
         const urlParts = item.url.split("/");

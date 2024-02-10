@@ -74,7 +74,7 @@ const SearchPokemonInput: React.FC = () => {
           style={styles.input}
           onChangeText={(text: string) => setInputText(text)}
           value={inputText}
-          placeholder="Write a pokemon"
+          placeholder="Find a pokemon"
         ></TextInput>
         <Pressable
           style={styles.button}
