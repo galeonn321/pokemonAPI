@@ -1,6 +1,7 @@
 import { LOG } from "../config/logger";
+import { Pokemon } from "../interfaces/pokemonInterfaces";
 
-export const fetchMultiplePokemons = async () => {
+export const fetchMultiplePokemons = async (): Promise<Pokemon[]> => {
   try {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
 
@@ -10,13 +11,15 @@ export const fetchMultiplePokemons = async () => {
 
     const data = await response.json();
 
-    const pokemonData = data.results.map((item) => {
-      const urlParts = item.url.split("/");
-      const id = urlParts[urlParts.length - 2];
-      const picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-      const name = item.name;
-      return { id, picture, name };
-    });
+    const pokemonData: Pokemon[] = data.results.map(
+      (item: { url: string; name: string }) => {
+        const urlParts = item.url.split("/");
+        const id = urlParts[urlParts.length - 2];
+        const picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+        const name = item.name;
+        return { id, picture, name };
+      }
+    );
 
     return pokemonData;
   } catch (error) {

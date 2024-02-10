@@ -13,8 +13,6 @@ import { LOG } from "../config/logger";
 const PokemonDetailModal = ({ modalVisible, closeModal, data }) => {
   const { picture, type, abilities } = data[0];
 
-//   LOG.warn(modalVisible, closeModal, data[0], 'AHAAHAHAHAH');
-
     return (
       <Modal
         animationType="slide"

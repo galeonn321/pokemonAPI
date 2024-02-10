@@ -35,7 +35,7 @@ const SearchPokemonInput: React.FC = () => {
     setIsLoading(false);
   };
 
-  const handleButtonPress = async (inputText: string) => {
+  const onPressSearchButton = async (inputText: string) => {
     setIsLoading(true);
     const pokemonResult = await fetchPokemon(inputText);
     setSearchResults([pokemonResult]);
@@ -78,7 +78,7 @@ const SearchPokemonInput: React.FC = () => {
         ></TextInput>
         <Pressable
           style={styles.button}
-          onPress={() => handleButtonPress(inputText)}
+          onPress={() => onPressSearchButton(inputText)}
         >
           <Text style={styles.buttonText}>Begin Search</Text>
         </Pressable>
