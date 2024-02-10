@@ -27,7 +27,7 @@ const SearchPokemonInput: React.FC = () => {
     getMultiplePokemons();
   }, [inputText === ""]);
 
-  //Here I fetch the the first list when the input is empty
+  //Here I fetch the the first list when the input is empty which is the first 20 pokemons
   const getMultiplePokemons = async () => {
     setIsLoading(true);
     const data = await fetchMultiplePokemons();

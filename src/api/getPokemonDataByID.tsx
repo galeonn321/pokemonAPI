@@ -16,5 +16,5 @@ export const getPokemonDataByID = async (id) => {
     abilities: abilities,
   };
 
-  return getPokemonDataByID;
+  return pokemonObject;
 };
