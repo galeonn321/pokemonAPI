@@ -30,7 +30,7 @@ const PokemonDetailModal = ({ modalVisible, closeModal, data }) => {
               <Text key={index}>{ability}</Text>
             ))}
             <Pressable style={[styles.button, styles.buttonClose]} onPress={closeModal}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              <Text style={styles.textStyle}>Catch the pokemon</Text>
             </Pressable>
           </View>
         </View>

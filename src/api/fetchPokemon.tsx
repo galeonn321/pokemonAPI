@@ -1,5 +1,7 @@
 import { LOG } from "../config/logger";
 
+
+//This function searches for the the pokemon that the user typed.
 export const fetchPokemon = async (pokemonQuery: string) => {
   try {
     const response = await fetch(
@@ -12,10 +14,6 @@ export const fetchPokemon = async (pokemonQuery: string) => {
 
     const data = await response.json();
 
-    // Check if the returned data is empty or contains an error message
-    if (!data || data.error || Object.keys(data).length === 0) {
-      throw new Error("Pokémon not found");
-    }
 
     return data;
   } catch (error) {

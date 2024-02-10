@@ -22,3 +22,5 @@ import {
   
   export { LOG };
   
+
+  //This is just to have a beautiful and colorful console.log

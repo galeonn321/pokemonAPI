@@ -1,6 +1,9 @@
 import { LOG } from "../config/logger";
 import { Pokemon } from "../interfaces/pokemonInterfaces";
 
+
+
+//This is the function to get fist list of 20 pokemons when the input is empty
 export const fetchMultiplePokemons = async (): Promise<Pokemon[]> => {
   try {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");

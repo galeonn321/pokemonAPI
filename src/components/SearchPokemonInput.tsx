@@ -13,9 +13,8 @@ import { FlashList } from "@shopify/flash-list";
 import { fetchPokemon } from "../api/fetchPokemon";
 import PokemonDetailModal from "./PokemonDetailModal";
 import { fetchMultiplePokemons } from "../api/fetchMultiplePokemons";
-import { usePokemon } from "../api/usePokemon";
+import { getPokemonDataByID } from "../api/getPokemonDataByID";
 const { height, width } = Dimensions.get("screen");
-
 
 const SearchPokemonInput: React.FC = () => {
   const [inputText, setInputText] = useState<string>("");
@@ -28,6 +27,7 @@ const SearchPokemonInput: React.FC = () => {
     getMultiplePokemons();
   }, [inputText === ""]);
 
+  //Here I fetch the the first list when the input is empty
   const getMultiplePokemons = async () => {
     setIsLoading(true);
     const data = await fetchMultiplePokemons();
@@ -35,6 +35,7 @@ const SearchPokemonInput: React.FC = () => {
     setIsLoading(false);
   };
 
+  //When user press the button it will search for the pokemon the user typed
   const onPressSearchButton = async (inputText: string) => {
     setIsLoading(true);
     const pokemonResult = await fetchPokemon(inputText);
@@ -42,8 +43,9 @@ const SearchPokemonInput: React.FC = () => {
     setIsLoading(false);
   };
 
+  //When the user clicks an item it gets the data and opens the modal
   const getDataFromPokemon = async (id: string) => {
-    const dataSinglePokemon = await usePokemon(id);
+    const dataSinglePokemon = await getPokemonDataByID(id);
     setSelectedPokemon([dataSinglePokemon]);
     setModalVisible(true);
   };
@@ -67,6 +69,7 @@ const SearchPokemonInput: React.FC = () => {
     );
   };
 
+  //Used flashlist from shopify, according to them, it's quicker.
   return (
     <View style={styles.container}>
       <View style={styles.containerInput}>
