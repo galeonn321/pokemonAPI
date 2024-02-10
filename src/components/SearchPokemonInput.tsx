@@ -43,7 +43,7 @@ const SearchPokemonInput: React.FC = () => {
     setIsLoading(false);
   };
 
-  //When the user clicks an item it gets the data and opens the modal
+  //When the user clicks an item it gets the data by ID and opens the modal
   const getDataFromPokemon = async (id: string) => {
     const dataSinglePokemon = await getPokemonDataByID(id);
     setSelectedPokemon([dataSinglePokemon]);
@@ -133,10 +133,9 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   containerFlashlist: {
-    top: height / 4,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 100,
+    marginBottom: 200,
   },
   cardContainer: {
     borderWidth: 1,
@@ -153,7 +152,6 @@ const styles = StyleSheet.create({
   },
   containerInput: {
     flexDirection: "row",
-    top: height / 5,
   },
   button: {
     backgroundColor: "#134",

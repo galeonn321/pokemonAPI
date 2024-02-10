@@ -5,7 +5,6 @@ import SearchPokemonInput from "../components/SearchPokemonInput";
 interface Props {}
 
 const HomeScreen: React.FC<Props> = () => {
-
   return (
     <View>
       <SearchPokemonInput />
