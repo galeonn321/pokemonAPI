@@ -14,7 +14,7 @@ import { fetchPokemon } from "../api/fetchPokemon";
 import PokemonDetailModal from "./PokemonDetailModal";
 import { fetchMultiplePokemons } from "../api/fetchMultiplePokemons";
 import { getPokemonDataByID } from "../api/getPokemonDataByID";
-const { height, width } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 const SearchPokemonInput: React.FC = () => {
   const [inputText, setInputText] = useState<string>("");
@@ -58,7 +58,7 @@ const SearchPokemonInput: React.FC = () => {
         style={styles.cardContainer}
         onPress={() => getDataFromPokemon(item.item.id)}
       >
-        <Text>{pokemonName}</Text>
+        <Text style={styles.pokemonName}>{pokemonName}</Text>
         <Image
           style={styles.image}
           source={{
@@ -72,6 +72,7 @@ const SearchPokemonInput: React.FC = () => {
   //Used flashlist from shopify, according to them, it's quicker.
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Pokemon APP</Text>
       <View style={styles.containerInput}>
         <TextInput
           style={styles.input}
@@ -116,9 +117,20 @@ const SearchPokemonInput: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+    paddingTop: 100,
+    paddingBottom: 100,
+  },
+  header: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color:'#fff'
   },
   icon: {
     marginRight: 10,
+  },
+  pokemonName: {
+    fontSize: 24,
+    fontWeight: "bold",
   },
   input: {
     height: 40,
