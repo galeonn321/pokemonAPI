@@ -1,10 +1,10 @@
 import { LOG } from "../config/logger";
-import { Pokemon } from "../interfaces/pokemonInterfaces";
+import { PokemonData } from "../interfaces/pokemonData";
 
 
 
 //This is the function to get fist list of 20 pokemons when the input is empty
-export const fetchMultiplePokemons = async (): Promise<Pokemon[]> => {
+export const fetchMultiplePokemons = async (): Promise<PokemonData[]> => {
   try {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
 
@@ -19,7 +19,7 @@ export const fetchMultiplePokemons = async (): Promise<Pokemon[]> => {
       throw new Error("No Pokémon found");
     }
 
-    const pokemonData: Pokemon[] = data.results.map(
+    const pokemonData: PokemonData[] = data.results.map(
       (item: { url: string; name: string }) => {
         const urlParts = item.url.split("/");
         const id = urlParts[urlParts.length - 2];

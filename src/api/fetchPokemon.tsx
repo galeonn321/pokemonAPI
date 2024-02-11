@@ -1,8 +1,10 @@
 import { LOG } from "../config/logger";
-
+import { PokemonData } from "../interfaces/pokemonData";
 
 //This function searches for the the pokemon that the user typed.
-export const fetchPokemon = async (pokemonQuery: string) => {
+export const fetchPokemon = async (
+  pokemonQuery: string
+): Promise<PokemonData> => {
   try {
     const response = await fetch(
       `https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`
@@ -13,7 +15,6 @@ export const fetchPokemon = async (pokemonQuery: string) => {
     }
 
     const data = await response.json();
-
 
     return data;
   } catch (error) {
